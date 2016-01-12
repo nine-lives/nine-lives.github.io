@@ -1,1 +1,65 @@
-www.9ls.com 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miaow! | Nine Lives Software</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .main {
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
+        #fg, #bg {
+            display: table-cell;
+        }
+
+        #fg {
+            width: 480px;
+        }
+
+        #bg {
+            background-image: url(img/cat.jpg);
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            background-position: bottom left;
+        }
+    </style>
+</head>
+
+<body>
+<div class="main">
+    <div id="fg">
+        <img src="img/logo-430x150-bt.png" alt="Welcome to Nine Lives Software"/>
+    </div>
+    <div id="bg"></div>
+</div>
+</body>
+
+<script src="js/jquery-2.2.0.min.js"></script>
+<script>
+    var $bg = $('#bg');
+    function purr() {
+        $bg.css('background-position', ($bg.width() / $bg.height() < 0.75) ?
+                'bottom left' :
+                'bottom right');
+    }
+    $(window).resize(purr);
+    purr();
+</script>
+
+</html>
