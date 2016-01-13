@@ -50,6 +50,22 @@
             margin-bottom: 20px;
             width: 100%;
         }
+
+        #clients span {
+            color: #555;
+            display: inline-block;
+            font-variant: small-caps;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: -1px -0px 2px #aaa;
+            vertical-align: top;
+            width: 140px;
+            height: 64px;
+            white-space: normal;
+            padding-top: 20px;
+            border: dashed #555555 1px;
+            border-width: 0 1px;
+        }
         .section {
             padding: 15px 25px;
         }
@@ -81,6 +97,7 @@
 
 <body>
 <div id="clients">
+    <span>Who Works With Us</span>
     <img src="img/clients/stuffusell-gs.png"/>
     <img src="img/clients/camelot2-gs.png"/>
     <img src="img/clients/expressly-gs.png"/>
@@ -122,7 +139,7 @@
         }
 
         function stroke() {
-            var $client = $("#clients img:first-child");
+            var $client = $("#clients *:first-child");
             $client.animate({
                 opacity: 0.0,
                 marginLeft: -$client.width()
