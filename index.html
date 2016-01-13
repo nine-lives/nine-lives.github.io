@@ -8,10 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miaow! | Nine Lives Software</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
     <style>
         html, body {
             height: 100%;
+            font-family: 'Raleway', sans-serif;
+            font-size: 20px;
         }
 
         body {
@@ -38,13 +40,53 @@
             background-repeat: no-repeat;
             background-position: bottom left;
         }
+
+        #clients {
+            background: lightgrey;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .section {
+            padding: 15px 25px;
+        }
+
+        h2 {
+            font-variant: small-caps;
+            padding: 0;
+            margin: 0;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
     </style>
 </head>
 
 <body>
+<div id="clients">
+    <img src="img/clients/stuffusell-gs.png"/>
+    <img src="img/clients/camelot2-gs.png"/>
+    <img src="img/clients/expressly-gs.png"/>
+    <img src="img/clients/homeflow-gs.png"/>
+    <img src="img/clients/ebay-gs.png"/>
+</div>
 <div class="main">
     <div id="fg">
         <img src="img/logo-430x150-bt.png" alt="Welcome to Nine Lives Software"/>
+        <div class="section" id="description">
+            <h2>What We Do</h2>
+            <p>We can make things for you out of software.
+                We can help you work out what you need made.
+                We can get your software projects back on track.</p>
+            <p>Not sure what you are after, just give us a call or drop
+                us a note and see if we can help.</p>
+        </div>
+        <div class="section" id="contact">
+            <h2>Get In Touch</h2>
+            <p><a href="mailto:hello@9ls.com">hello@9ls.com</a>
+                <br/>+44 7879 440892</p>
+        </div>
     </div>
     <div id="bg"></div>
 </div>
@@ -52,14 +94,34 @@
 
 <script src="js/jquery-2.2.0.min.js"></script>
 <script>
-    var $bg = $('#bg');
-    function purr() {
-        $bg.css('background-position', ($bg.width() / $bg.height() < 0.75) ?
-                'bottom left' :
-                'bottom right');
-    }
-    $(window).resize(purr);
-    purr();
+    (function () {
+        var $bg = $('#bg');
+
+        function purr() {
+            $bg.css('background-position', ($bg.width() / $bg.height() < 0.75) ?
+                    'bottom left' :
+                    'bottom right');
+        }
+
+        function stroke() {
+            var $client = $("#clients img:first-child");
+            $client.animate({
+                opacity: 0.0,
+                marginLeft: -$client.width()
+            }, 1500, 'swing', function () {
+                $client.appendTo($client.parent());
+                $client.css('margin-left', 0);
+                $client.animate({
+                    opacity: 1.0
+                }, 1500);
+            });
+            setTimeout(stroke, 6000)
+        }
+
+        $(window).resize(purr);
+        purr();
+        setTimeout(stroke, 4500)
+    })();
 </script>
 
 </html>
