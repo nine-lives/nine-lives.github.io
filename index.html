@@ -3,153 +3,32 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-    <meta name="msvalidate.01" content="2CFD1DC8CD841E712354BBBCF4B2A114" />
-    <meta name="description" content="Software Development Services For Businesses">
+    <meta name="msvalidate.01" content="2CFD1DC8CD841E712354BBBCF4B2A114"/>
+    <meta name="keywords" content="software development, software engineers, software programmers">
+    <meta name="description" content="We are experts in software delivery for business. We can help you work out what you need made to transform your business. We will create enterprise-quality software that you can rely on.">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        img-src 'self' http://www.google-analytics.com;
+        script-src 'self' http://www.google-analytics.com;
+        style-src 'self' https://fonts.googleapis.com;
+        font-src https://fonts.gstatic.com;
+        child-src 'none';
+        object-src 'none';"/>
+
     <title>Software Engineering for SMEs | Nine Lives Software</title>
+
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="canonical" href="http://9ls.com" />
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
-    <style>
-        html, body {
-            height: 100%;
-            font-family: 'Raleway', sans-serif;
-            font-size: 20px;
-        }
-
-        body {
-            margin: 0;
-        }
-
-        .main {
-            padding-top: 100px;
-            display: table;
-            height: 100%;
-            width: 100%;
-        }
-
-        #fg, #bg {
-            display: table-cell;
-        }
-
-        #fg {
-            width: 430px;
-        }
-
-        #bg {
-            background-image: url(img/cat.jpg);
-            background-size: auto 100%;
-            background-repeat: no-repeat;
-            background-position: bottom left;
-        }
-
-        #clients {
-            position: absolute;
-            background: lightgrey;
-            white-space: nowrap;
-            overflow: hidden;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        #clients span {
-            color: #555;
-            display: inline-block;
-            font-variant: small-caps;
-            font-weight: 700;
-            text-align: center;
-            text-shadow: -1px -0px 2px #aaa;
-            vertical-align: top;
-            width: 140px;
-            height: 64px;
-            white-space: normal;
-            padding-top: 20px;
-            border: dashed #555555 1px;
-            border-width: 0 1px;
-        }
-
-        .row::after {
-            clear: both;
-        }
-
-        .section {
-            padding: 15px 25px;
-        }
-
-        h1, h2 {
-            font-variant: small-caps;
-            padding: 0;
-            margin: 0;
-            font-size: 1.5em;
-        }
-
-        p {
-            text-align: justify;
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
-
-        footer {
-            font-size: 10px;
-            color: #666;
-            padding: 0 25px 15px 25px;
-        }
-
-        @media all and (min-width: 885px) {
-            #fg {
-                width: 885px;
-            }
-
-            .row p {
-                float: left;
-                width: 400px;
-            }
-
-            .row p:first-child {
-                margin-right: 30px;
-            }
-
-        }
-
-        @media all and (max-width: 440px) {
-            #bg {
-                display: none;
-            }
-
-            #clients span {
-                font-size: 12px;
-                padding-top: 10px;
-                width: 70px;
-                height: 40px;
-            }
-
-            #clients img {
-                height: 48px;
-            }
-
-            .main {
-                padding-top: 64px;
-            }
-
-        }
-
-        @media all and (max-width: 430px) {
-            #fg img  {
-                max-width: 100%;
-            }
-        }
-
-    </style>
+    <link href='css/miaow.css' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
 <div id="clients">
     <span>Who Works With Us</span>
-    <img src="img/clients/stuffusell-gs.png" alt="StuffUSell" />
+    <img src="img/clients/stuffusell-gs.png" alt="StuffUSell"/>
     <img src="img/clients/camelot2-gs.png" alt="Camelot"/>
     <img src="img/clients/expressly-gs.png" alt="Expressly"/>
     <img src="img/clients/vzaar-gs.png" alt="Vzaar"/>
@@ -172,7 +51,7 @@
                     We bring together the best talent and programmers in software development and have proven experience
                     in working with
                     everyone from fast-moving lean start-ups to large multi-national corporations. You'll find that
-                    NineLives can tailor a project to suit you and your budget.</p>
+                    Nine Lives Software can tailor a project to suit you and your budget.</p>
             </div>
         </div>
         <div class="section" id="contact">
@@ -183,8 +62,7 @@
                     call
                     or drop us a note and see if we can help.
                 </p>
-                <p><a href="mailto:hello@9ls.com">hello@9ls.com</a>
-                    <br/>
+                <p><span id="liame"></span>
                     <a href="tel:+447879440892">+44 7879 440892</a></p>
             </div>
         </div>
@@ -199,38 +77,7 @@
 </body>
 
 <script src="js/jquery-2.2.0.min.js"></script>
-<script>
-    (function () {
-        "use strict";
-        var mdt = 1500;
-        var $bg = $('#bg');
-
-        function purr() {
-            $bg.css('background-position', ($bg.width() / $bg.height() < 0.75) ?
-                    'bottom left' :
-                    'bottom right');
-        }
-
-        function stroke() {
-            var $client = $("#clients *:first-child");
-            $client.animate({
-                opacity: 0.0,
-                marginLeft: -$client.outerWidth()
-            }, mdt, 'swing', function () {
-                $client.appendTo($client.parent());
-                $client.css('margin-left', 0);
-                $client.animate({
-                    opacity: 1.0
-                }, mdt);
-            });
-            setTimeout(stroke, mdt * 4);
-        }
-
-        $(window).resize(purr);
-        purr();
-        setTimeout(stroke, mdt * 3);
-    })();
-</script>
+<script src="js/miaow.js"></script>
 <script type="application/ld+json">
     {
       "@context": "http://schema.org",

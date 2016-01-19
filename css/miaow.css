@@ -1,0 +1,155 @@
+html, body {
+    height: 100%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+}
+
+body {
+    margin: 0;
+}
+
+.main {
+    padding-top: 100px;
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+#fg, #bg {
+    display: table-cell;
+}
+
+#fg {
+    width: 430px;
+}
+
+#bg {
+    background-image: url(../img/cat.jpg);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: bottom left;
+}
+
+#clients {
+    position: absolute;
+    background: lightgrey;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#clients span {
+    color: #555;
+    display: inline-block;
+    font-variant: small-caps;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: -1px -0px 2px #aaa;
+    vertical-align: top;
+    width: 140px;
+    height: 64px;
+    white-space: normal;
+    padding-top: 20px;
+    border: dashed #555555 1px;
+    border-width: 0 1px;
+}
+
+.row::after {
+    clear: both;
+}
+
+.section {
+    clear: both;
+    padding: 15px 25px;
+}
+
+h1, h2 {
+    font-variant: small-caps;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+p {
+    text-align: justify;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+footer {
+    font-size: 10px;
+    color: #666;
+    padding: 0 25px 15px 25px;
+}
+
+@media all and (min-width: 885px) {
+    #fg {
+        width: 885px;
+    }
+
+    .row p {
+        float: left;
+        width: 400px;
+    }
+
+    .row p:first-child {
+        margin-right: 30px;
+    }
+
+}
+
+@media all and (max-width: 440px) {
+    #bg {
+        display: none;
+    }
+
+    #clients span {
+        font-size: 12px;
+        padding-top: 10px;
+        width: 70px;
+        height: 40px;
+    }
+
+    #clients img {
+        height: 48px;
+    }
+
+    .main {
+        padding-top: 64px;
+    }
+
+}
+
+@media all and (max-width: 430px) {
+    #fg img {
+        max-width: 100%;
+    }
+}
+
+@media print {
+    .main {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    #fg {
+        width: 100%;
+    }
+
+    .row p {
+        float: none;
+        width: 100%;
+    }
+
+    #clients {
+        display: none;
+    }
+
+    .section {
+        padding: 5px 25px;
+    }
+}
