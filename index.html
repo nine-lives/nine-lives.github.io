@@ -66,6 +66,11 @@
             border: dashed #555555 1px;
             border-width: 0 1px;
         }
+
+        .row::after {
+            clear: both;
+        }
+
         .section {
             padding: 15px 25px;
         }
@@ -75,21 +80,48 @@
             padding: 0;
             margin: 0;
         }
+
         p {
             text-align: justify;
         }
+
         a {
             text-decoration: none;
             color: black;
         }
 
+
+        footer {
+            font-size: 10px;
+            color: #666;
+            padding: 0 25px 15px 25px;
+        }
+
+        @media all and (min-width: 885px) {
+            #fg {
+                width: 885px;
+            }
+
+            .row p {
+                float: left;
+                width: 400px;
+            }
+
+            .row p:first-child {
+                margin-right: 30px;
+            }
+
+        }
+
         @media all and (max-width: 440px) {
             #bg {
-               display: none;
+                display: none;
             }
+
             #clients {
                 display: none;
             }
+
             .main {
                 padding-top: 20px;
             }
@@ -110,24 +142,41 @@
 </div>
 <div class="main">
     <div id="fg">
-        <img src="img/logo-430x150-bt.png" alt="Welcome to Nine Lives Software"/>
+        <img src="img/logo-430x150-bt.png" alt="Welcome to NineLives Software"/>
         <div class="section" id="description">
             <h2>What We Do</h2>
-            <p>We can make things for you out of software.
-                We can help you work out what you need made.
-                We can get your software projects back on track.</p>
-            <p>Not sure what you are after, just give us a call or drop
-                us a note and see if we can help.</p>
+            <div class="row">
+                <p class="column">We are experts in software for business. We can help you work out what you need made
+                    to transform your business. We will create enterprise-quality software that you can rely on. We can get
+                    your software projects back on track.</p>
+
+                <p class="column">
+                    We bring together the best talent in software development and have proven experience in working with
+                    everyone from fast-moving lean start-ups to large multi-national corporations. You'll find that
+                    NineLives can tailor a project to suit you and your budget.</p>
+            </div>
         </div>
         <div class="section" id="contact">
             <h2>Get In Touch</h2>
-            <p><a href="mailto:hello@9ls.com">hello@9ls.com</a>
-                <br/>
-                <a href="tel:+447879440892">+44 7879 440892</a></p>
+            <div class="row">
+                <p>
+                    If you're not sure what you are after, but think that software might be the answer, just give us a
+                    call
+                    or drop us a note and see if we can help.
+                </p>
+                <p><a href="mailto:hello@9ls.com">hello@9ls.com</a>
+                    <br/>
+                    <a href="tel:+447879440892">+44 7879 440892</a></p>
+            </div>
         </div>
+        <footer>
+            Copyright &copy; Nine Live Software Ltd. 25 Chaucer Road, Bedford, MK40 2AL.<br/>
+            Registered in England & Wales No. 08369199, VAT No. GB  225 3083 34
+        </footer>
     </div>
     <div id="bg"></div>
 </div>
+
 </body>
 
 <script src="js/jquery-2.2.0.min.js"></script>
