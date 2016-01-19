@@ -90,7 +90,6 @@
             color: black;
         }
 
-
         footer {
             font-size: 10px;
             color: #666;
@@ -146,12 +145,15 @@
         <div class="section" id="description">
             <h2>What We Do</h2>
             <div class="row">
-                <p class="column">We are experts in software for business. We can help you work out what you need made
-                    to transform your business. We will create enterprise-quality software that you can rely on. We can get
+                <p class="column">We are experts in software delivery for business. We can help you work out what you
+                    need made
+                    to transform your business. We will create enterprise-quality software that you can rely on. We can
+                    get
                     your software projects back on track.</p>
 
                 <p class="column">
-                    We bring together the best talent in software development and have proven experience in working with
+                    We bring together the best talent and programmers in software development and have proven experience
+                    in working with
                     everyone from fast-moving lean start-ups to large multi-national corporations. You'll find that
                     NineLives can tailor a project to suit you and your budget.</p>
             </div>
@@ -171,7 +173,7 @@
         </div>
         <footer>
             Copyright &copy; Nine Live Software Ltd. 25 Chaucer Road, Bedford, MK40 2AL.<br/>
-            Registered in England & Wales No. 08369199, VAT No. GB  225 3083 34
+            Registered in England & Wales No. 08369199, VAT No. GB 225 3083 34
         </footer>
     </div>
     <div id="bg"></div>
@@ -182,6 +184,8 @@
 <script src="js/jquery-2.2.0.min.js"></script>
 <script>
     (function () {
+        "use strict";
+        var mdt = 1500;
         var $bg = $('#bg');
 
         function purr() {
@@ -195,20 +199,44 @@
             $client.animate({
                 opacity: 0.0,
                 marginLeft: -$client.width()
-            }, 1500, 'swing', function () {
+            }, mdt, 'swing', function () {
                 $client.appendTo($client.parent());
                 $client.css('margin-left', 0);
                 $client.animate({
                     opacity: 1.0
-                }, 1500);
+                }, mdt);
             });
-            setTimeout(stroke, 6000)
+            setTimeout(stroke, mdt * 4);
         }
 
         $(window).resize(purr);
         purr();
-        setTimeout(stroke, 4500)
+        setTimeout(stroke, mdt * 3);
     })();
 </script>
-
+<script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "@id": "http://9ls.com",
+      "name": "Nine Lives Software",
+      "url": "http://9ls.com",
+      "logo": "http://9ls.com/img/logo-430x150-bt.png",
+      "telephone": "+44-7879440892",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "25 Chaucer Road",
+        "addressLocality": "Bedford",
+        "addressRegion": "Bedfordshire",
+        "postalCode": "MK40 2AL",
+        "addressCountry": "GB"
+      },
+      "contactPoint" : [{
+        "@type" : "ContactPoint",
+        "telephone" : "+44-7879440892",
+        "contactType" : "sales",
+        "areaServed" : "GB"
+      }]
+    }
+</script>
 </html>
