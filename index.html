@@ -75,10 +75,11 @@
             padding: 15px 25px;
         }
 
-        h2 {
+        h1 {
             font-variant: small-caps;
             padding: 0;
             margin: 0;
+            font-size: 1.5em;
         }
 
         p {
@@ -117,12 +118,19 @@
                 display: none;
             }
 
-            #clients {
-                display: none;
+            #clients span {
+                font-size: 12px;
+                padding-top: 10px;
+                width: 70px;
+                height: 40px;
+            }
+
+            #clients img {
+                height: 48px;
             }
 
             .main {
-                padding-top: 20px;
+                padding-top: 64px;
             }
 
         }
@@ -139,18 +147,18 @@
 <body>
 <div id="clients">
     <span>Who Works With Us</span>
-    <img src="img/clients/stuffusell-gs.png"/>
-    <img src="img/clients/camelot2-gs.png"/>
-    <img src="img/clients/expressly-gs.png"/>
-    <img src="img/clients/vzaar-gs.png"/>
-    <img src="img/clients/homeflow-gs.png"/>
-    <img src="img/clients/ebay-gs.png"/>
+    <img src="img/clients/stuffusell-gs.png" alt="StuffUSell" />
+    <img src="img/clients/camelot2-gs.png" alt="Camelot"/>
+    <img src="img/clients/expressly-gs.png" alt="Expressly"/>
+    <img src="img/clients/vzaar-gs.png" alt="Vzaar"/>
+    <img src="img/clients/homeflow-gs.png" alt="Homeflow"/>
+    <img src="img/clients/ebay-gs.png" alt="eBay UK"/>
 </div>
 <div class="main">
     <div id="fg">
         <img src="img/logo-430x150-bt.png" alt="Welcome to NineLives Software"/>
         <div class="section" id="description">
-            <h2>What We Do</h2>
+            <h1>What We Do</h1>
             <div class="row">
                 <p class="column">We are experts in software delivery for business. We can help you work out what you
                     need made
@@ -166,7 +174,7 @@
             </div>
         </div>
         <div class="section" id="contact">
-            <h2>Get In Touch</h2>
+            <h1>Get In Touch</h1>
             <div class="row">
                 <p>
                     If you're not sure what you are after, but think that software might be the answer, just give us a
@@ -205,7 +213,7 @@
             var $client = $("#clients *:first-child");
             $client.animate({
                 opacity: 0.0,
-                marginLeft: -$client.width()
+                marginLeft: -$client.outerWidth()
             }, mdt, 'swing', function () {
                 $client.appendTo($client.parent());
                 $client.css('margin-left', 0);
