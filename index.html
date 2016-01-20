@@ -20,12 +20,9 @@
     <title>Software Engineering for SMEs | Nine Lives Software</title>
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="canonical" href="http://9ls.com" />
-    <link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
-    <link href='css/miaow.css' rel='stylesheet' type='text/css'>
 </head>
 
-<body>
+<body itemscope itemtype="http://schema.org/Organization">
 <div id="clients">
     <span>Who Works With Us</span>
     <img src="img/clients/stuffusell-gs.png" alt="StuffUSell"/>
@@ -37,8 +34,8 @@
 </div>
 <div class="main">
     <div id="fg">
-        <img src="img/logo-430x150-bt.png" alt="Welcome to NineLives Software"/>
-        <div class="section" id="description">
+        <img itemprop="logo" src="img/logo-430x150-bt.png" alt="Welcome to NineLives Software"/>
+        <div class="section" id="description" itemprop="description">
             <h1>What We Do</h1>
             <div class="row">
                 <p class="column">We are experts in software delivery for business. We can help you work out what you
@@ -62,13 +59,19 @@
                     call
                     or drop us a note and see if we can help.
                 </p>
-                <p><span id="liame"></span>
-                    <a href="tel:+447879440892">+44 7879 440892</a></p>
+                <p class="contact"><abbr title="E-mail Address" itemprop="email" id="liame"></abbr>
+                    <abbr title="Telephone Number" itemprop="telephone"><a href="tel:+447879440892">+44 7879 440892</a></abbr></p>
             </div>
         </div>
         <footer>
-            Copyright &copy; Nine Lives Software Ltd. 25 Chaucer Road, Bedford, MK40 2AL.<br/>
-            Registered in England & Wales No. 08369199, VAT No. GB 225 3083 34
+            Copyright &copy;
+                <span itemprop="name">Nine Lives Software</span> Ltd.
+                <span itemprop="address">
+                    <span itemprop="streetAddress">25 Chaucer Road</span>,
+                    <span itemprop="addressLocality">Bedford</span>,
+                    <span itemprop="postalCode">MK40 2AL</span>.
+                </span><br/>
+            Registered in England & Wales No. 08369199, VAT No. <span itemprop="vatID">GB 225 3083 34</span>
         </footer>
     </div>
     <div id="bg"></div>
@@ -76,8 +79,10 @@
 
 </body>
 
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+<link href='css/miaow.min.css' rel='stylesheet' type='text/css'>
 <script src="js/jquery-2.2.0.min.js"></script>
-<script src="js/miaow.js"></script>
+<script src="js/miaow.min.js"></script>
 <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -86,7 +91,7 @@
       "name": "Nine Lives Software",
       "url": "http://9ls.com",
       "logo": "http://9ls.com/img/logo-430x150-bt.png",
-      "description" : "Software Development Services For Businesses"
+      "description" : "Software Development Services For Businesses",
       "telephone": "+44-7879440892",
       "address": {
         "@type": "PostalAddress",
