@@ -5,7 +5,7 @@ $(function () {
     $('.thermostat').each(function () {
         var that = $(this);
         var deviceId = that.data('device-id');
-        var from = moment().subtract(7, 'day');
+        var from = moment().subtract(3, 'day');
         var chart = null;
         console.log('device-id=' + deviceId);
         console.log('from=' + from.toISOString());
@@ -45,7 +45,7 @@ $(function () {
                     borderColor: "rgba(205,187,205,1)",
                     borderDash: [5, 5],
                     fill: false,
-                    pointRadius: 0,
+                    pointRadius: 3,
                     pointHoverRadius: 5,
                     data: []
                 },
@@ -115,7 +115,7 @@ $(function () {
                         xAxes: [{
                             type: "time",
                             time: {
-                                unit: 'hour'
+                                unit: 'second'
                             },
                             display: true,
                             scaleLabel: {
