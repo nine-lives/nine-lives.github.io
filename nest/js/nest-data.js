@@ -45,7 +45,7 @@ $(function () {
                     borderColor: "rgba(205,187,205,1)",
                     borderDash: [5, 5],
                     fill: false,
-                    pointRadius: 3,
+                    pointRadius: 0,
                     pointHoverRadius: 5,
                     data: []
                 },
@@ -115,7 +115,7 @@ $(function () {
                         xAxes: [{
                             type: "time",
                             time: {
-                                unit: 'second'
+                                unit: 'hour'
                             },
                             display: true,
                             scaleLabel: {
