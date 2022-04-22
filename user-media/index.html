@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="nls-web-components-sdapi.js"></script>
+</head>
+<body>
+<div>
+    Speaker:
+    <select is="media-devices" constraints="audiooutput"></select>
+</div>
+<div>
+    Audio:
+    <select is="media-devices" constraints="audio" default="936894e7eb8fa54bf98c022e37c0223f7afd32892dd107c508361252c668ca4c"></select>
+</div>
+
+<div>
+    User Stream:<br>
+    <video is="user-media" id="vid1"
+           xautoplay
+           audio="false"
+           facing-mode="environment"></video>
+    <button onclick="document.getElementById('vid1').start()">Play</button>
+    <button onclick="document.getElementById('vid1').stop()">Stop</button>
+    <div>
+        Video:
+        <select is="media-devices" constraints="videoinput" id="videoin"></select>
+    </div>
+    <div>
+        Microphone:
+        <select is="media-devices" constraints="audioinput" id="audioin"></select>
+    </div>
+</div>
+
+<div>
+    User Stream 2:<br>
+    <video is="user-media" id="vid2"
+           xautoplay
+           audio="false"
+           facing-mode="environment"></video>
+    <button onclick="document.getElementById('vid2').start()">Play</button>
+    <button onclick="document.getElementById('vid2').stop()">Stop</button>
+    <div>
+        Video:
+        <select is="media-devices" constraints="videoinput" id="videoin2"></select>
+    </div>
+    <div>
+        Microphone:
+        <select is="media-devices" constraints="audioinput" id="audioin2"></select>
+    </div>
+</div>
+
+<script>
+    const vid1 = document.getElementById('vid1');
+    const audioIn = document.getElementById('audioin');
+    const videoIn = document.getElementById('videoin');
+    audioIn.addEventListener('change', o => vid1.audio = audioIn.value);
+    videoIn.addEventListener('change', o => vid1.audio = videoIn.value);
+    vid1.audio = audioIn.value;
+    vid1.video = videoIn.value;
+
+    const vid2 = document.getElementById('vid2');
+    const audioIn2 = document.getElementById('audioin2');
+    const videoIn2 = document.getElementById('videoin2');
+    audioIn2.addEventListener('change', o => vid2.audio = audioIn2.value);
+    videoIn2.addEventListener('change', o => vid2.audio = videoIn2.value);
+    vid2.audio = audioIn2.value;
+    vid2.video = videoIn2.value;
+
+</script>
+</body>
+</html>
