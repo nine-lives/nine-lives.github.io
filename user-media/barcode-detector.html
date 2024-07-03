@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Barcode Detector | Nine Lives Software</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.15.0/css/all.css" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+    <link href='/css/miaow.min.css' rel='stylesheet' type='text/css'>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<div class="main pt-0">
+    <div id="fg">
+        <img src="/img/logo-430x150-bt.png" alt="Welcome to NineLives Software"/>
+        <h2 class="px-1 px-md-3 py-3">Barcode is <span id="barcode"></span></h2>
+        <div class="barcode-detector-control px-1 px-md-3">
+            <div class="d-flex">
+                <barcode-detector class="flex-grow-1" delay="1000" quorum="3" xautostart="on" continuous="true" width="200" aspectRatio="0.2">Barcode Detector</barcode-detector>
+                <button class="flex-grow-0 btn btn-outline-primary rounded-0 bdc-play border-start-0" style="border-top-right-radius: 0.375rem; min-width: 55px"><i class="fas fa-play"></i></button>
+                <button class="flex-grow-0 btn btn-outline-primary rounded-0 d-none bdc-stop border-start-0" style="border-top-right-radius: 0.375rem; min-width: 55px"><i class="fas fa-stop"></i></button>
+            </div>
+            <div class="barcode-detector-buttons d-flex">
+                <button class="flex-grow-1 btn btn-primary rounded-0 bdc-scan" style="border-bottom-left-radius: 0.375rem;">Scan</button>
+                <button class="flex-grow-0 btn btn-outline-primary rounded-0 d-none bdc-compress border-end-0" style="min-width: 55px"><i class="fas fa-compress-alt"></i></button>
+                <button class="flex-grow-0 btn btn-outline-primary rounded-0 bdc-expand" style="min-width: 55px"><i class="fas fa-expand-alt"></i></button>
+                <button class="flex-grow-0 btn btn-outline-primary rounded-0 bdc-settings border-start-0 border-top-0" style="border-bottom-right-radius: 0.375rem; min-width: 55px"><i class="fas fa-cog"></i></button>
+            </div>
+
+            <div class="barcode-detector-settings border border-1 rounded p-3 d-none border-top-0 rounded-top-0 bg-light">
+                <div class="form-group">
+                    <label>Video Source:</label>
+                    <select is="media-devices" constraints="videoinput" class="form-control bdc-device"></select>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="form-group col-6">
+                        <label>Quorum:</label>
+                        <input type="number" min="1" max="10" class="form-control bdc-quorum" value="3"/>
+                        <div class="small text-muted">Consecutive scans required for confidence</div>
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Delay:</label>
+                        <input type="number" min="1" max="10000" class="form-control bdc-delay" value="1000" />
+                        <div class="small text-muted">Delay in ms before detected identical barcode</div>
+                    </div>
+                    <div class="form-group col-6">
+                        <div class="custom-control custom-checkbox mt-2">
+                            <input type="checkbox" class="custom-control-input bdc-continuous" id="bdc-c" checked="true">
+                            <label class="custom-control-label" for="bdc-c">Continuous scanning</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-6">
+                        <div class="custom-control custom-checkbox mt-2">
+                            <input type="checkbox" class="custom-control-input bdc-autostart" id="bdc-a">
+                            <label class="custom-control-label" for="bdc-a">Auto-start</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <footer class="mt-5">
+            Copyright &copy;
+            <span>Nine Lives Software</span> Ltd.
+            <span>
+                    <span>25 Chaucer Road</span>,
+                    <span>Bedford</span>,
+                    <span>MK40 2AL</span>.
+                </span><br/>
+            Registered in England & Wales No. 08369199, VAT No. <span>GB 225 3083 34</span>
+        </footer>
+    </div>
+<!--    <div id="bg"></div>-->
+</div>
+
+
+<script src="/js/jquery-2.2.0.min.js"></script>
+<script src="/user-media/nls-web-components-sdapi.js"></script>
+
+<script>
+    $(function () {
+        const beep = new Audio("/user-media/beep.mp3");
+
+        $('.barcode-detector-control').each(function () {
+            try {
+                const $this = $(this);
+                const bs = $this.find('barcode-detector').get(0);
+                const play = $this.find('.bdc-play');
+                const stop = $this.find('.bdc-stop');
+                const scan = $this.find('.bdc-scan');
+                const expand = $this.find('.bdc-expand');
+                const compress = $this.find('.bdc-compress');
+                const settings = $this.find('.bdc-settings');
+                const settingsEl = $this.find('.barcode-detector-settings');
+                const continuous = $this.find('.bdc-continuous');
+                const delay = $this.find('.bdc-delay');
+                const quorum = $this.find('.bdc-quorum');
+                const autostart = $this.find('.bdc-autostart');
+                const device = $this.find('.bdc-device');
+
+                const defaultAutostart = localStorage.getItem("barcode-detector-autostart");
+                if (defaultAutostart) {
+                    bs.autostart = defaultAutostart === 'true';
+                }
+                autostart.attr('checked', bs.autostart);
+
+                const defaultDevice = localStorage.getItem("barcode-detector-device");
+                if (defaultDevice) {
+                    setTimeout(() => {
+                        device.val(defaultDevice);
+                        bs.video = defaultDevice;
+                    }, 500);
+                }
+                $(document.body).append('<br>Device: ' + defaultDevice);
+
+                const defaultDelay = localStorage.getItem("barcode-detector-delay");
+                if (defaultDelay) {
+                    bs.delay = defaultDelay;
+                }
+                delay.val(bs.delay);
+
+                const defaultQuorum = localStorage.getItem("barcode-detector-quorum");
+                if (defaultQuorum) {
+                    bs.quorum = defaultQuorum;
+                }
+                quorum.val(bs.quorum);
+
+                const defaultContinuous = localStorage.getItem("barcode-detector-continuous");
+                if (defaultContinuous) {
+                    bs.continuous = defaultContinuous === 'true';
+                }
+                continuous.attr('checked', bs.continuous);
+
+                play.click(function () {
+                    bs.start();
+                });
+
+                stop.click(function () {
+                    bs.stop();
+                });
+
+                scan.click(function () {
+                    bs.scan();
+                    play.removeClass('d-none');
+                    stop.addClass('d-none');
+                });
+
+                expand.click(function () {
+                    bs.aspectRatio = 0.5;
+                    expand.addClass('d-none');
+                    compress.removeClass('d-none');
+                });
+
+                compress.click(function () {
+                    bs.aspectRatio = 0.2;
+                    expand.removeClass('d-none');
+                    compress.addClass('d-none');
+                });
+
+                settings.click(function () {
+                    settingsEl.toggleClass('d-none');
+                });
+
+                continuous.change(function () {
+                    bs.continuous = this.checked;
+                    localStorage.setItem("barcode-detector-continuous", bs.continuous);
+                });
+
+                autostart.change(function () {
+                    bs.autostart = this.checked;
+                    localStorage.setItem("barcode-detector-autostart", bs.autostart);
+                });
+
+                quorum.change(function () {
+                    bs.quorum = quorum.val();
+                    localStorage.setItem("barcode-detector-quorum", bs.quorum);
+                });
+
+                delay.change(function () {
+                    bs.delay = delay.val();
+                    localStorage.setItem("barcode-detector-delay", bs.delay);
+                });
+
+                device.change(function () {
+                    bs.video = device.val();
+                    localStorage.setItem("barcode-detector-device", device.val());
+                });
+
+                bs.addEventListener('videoStarted', (event) => {
+                    play.addClass('d-none');
+                    stop.removeClass('d-none');
+                });
+
+                bs.addEventListener('videoStopped', (event) => {
+                    play.removeClass('d-none');
+                    stop.addClass('d-none');
+                });
+
+                bs.addEventListener('barcodeDetected', (event) => {
+                    scan.text('Scan').removeClass('disabled');
+                });
+
+                bs.addEventListener('detectionStarted', (event) => {
+                    scan.text('Scanning...').addClass('disabled');
+                });
+
+                bs.addEventListener('detectionStopped', (event) => {
+                    scan.text('Scan').removeClass('disabled');
+                });
+
+                bs.addEventListener('barcodeDetected', (event) => {
+                    console.log('asdadasdadd ')
+                    beep.play();
+                    $('#barcode').text(event.detail.results[0].rawValue);
+                });
+            }catch (err) {
+                $(document.body).append("<br>#################################??<br>");
+                $(document.body).append(err);
+            }
+        });
+    });
+</script>
+</body>
+
+</html>
